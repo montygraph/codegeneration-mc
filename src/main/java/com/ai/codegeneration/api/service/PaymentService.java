@@ -1,33 +1,26 @@
 package com.ai.codegeneration.api.service;
-package com.ai.codegeneration.api.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import com.ai.codegeneration.api.entity.TransactionEntity;
 import com.ai.codegeneration.api.mapper.PaymentToTransactionMapper;
 import com.ai.codegeneration.api.model.PaymentRequest;
 import com.ai.codegeneration.api.repository.TransactionRepository;
 
+@Service
 public class PaymentService {
 
     @Autowired
     TransactionRepository transactionRepository;
     
-    public ResponseEntity<String> initiatePayment() {
-        // Code to initiate payment
-        PaymentRequest paymentRequest = new PaymentRequest();
-        // Set paymentRequest properties
-        
-        PaymentToTransactionMapper mapper = new PaymentToTransactionMapper();
-        TransactionEntity transactionEntity = mapper.mapPaymentRequestToTransactionEntity(paymentRequest);
-        
-        // Code to store the transactionEntity
-        
-        // Rest of the code
+    public ResponseEntity<String> initiatePayment(PaymentRequest paymentRequest) {
+        // Set paymentRequest properties        
+        TransactionEntity transactionEntity = PaymentToTransactionMapper.mapPaymentRequestToTransactionEntity(paymentRequest);
         
         try {
             // Code to store the transactionEntity in the database using TransactionRepository
